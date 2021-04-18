@@ -6,19 +6,54 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
-const employee = require('./employee.js');
-const manager = require('./manager.js');
-const engineer = require('./engineer.js');
-const intern = require('./intern.js');
+const employee = require('./employee');
+const manager = require('./manager');
+const engineer = require('./engineer');
+const intern = require('./intern');
 
 
-genManager() {
+function genManager() {
 // this is a manager only
 // use inquirer prompt
+ return inquirer.prompt([
+     
+    {
+    type: 'input', 
+    message: 'Please enter the name of your project manager: ',
+    name: 'name'
+    },
+
+    {
+        type: 'input', 
+        message: "Please enter your manager's employee ID: ",
+        name: 'id'
+    },
+
+    {
+        type: 'input', 
+        message: "Please enter your manager's email address: ",
+        name: 'email'
+    },
+
+    {
+        type: 'input', 
+        message: "Please enter your manager's office number: ",
+        name: 'office'
+    }
+ ]).then((response)) => {
+    let managerText =
+
+
+ }
+ 
+ 
+ 
+ ;
 
 }
 
-genEmployee() {
+
+fuction genEmployee() {
 //this is either an engineer or an intern
 // use inquirer prompt to choose either occupation and then depending on the one chosen, execute generator function for that one
 
