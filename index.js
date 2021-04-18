@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
+const employee = require('./employee.js');
 const manager = require('./manager.js');
 const engineer = require('./engineer.js');
 const intern = require('./intern.js');
@@ -34,3 +35,5 @@ genIntern() {
 
 }
 
+// I need objects to be created via inquire prompts
+// then I need 
