@@ -6,10 +6,15 @@ class Engineer extends Employee {
         super(name,id,email)
         this.github = github;
     }
+    getName() {
+        return this.name
+    }
+    getID() {
+        return this.name
+    }
+    getRole(){
+        return 'Engineer';
+    }
 }
-
-
-
-
 
 module.exports = Engineer;
