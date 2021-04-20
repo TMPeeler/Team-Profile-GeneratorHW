@@ -11,10 +11,6 @@ const manager = require('./manager');
 const engineer = require('./engineer');
 const intern = require('./intern');
 
-
-
-
-
 const Team = [];
 
 function genManager() {
@@ -77,9 +73,7 @@ function moreMembers() {
         }).catch((err) => {
             console.log(err);
         })
-        
     //     console.log(data.choice);
-
     //         switch (data.choice) {
     //             case 'yes':
     //                 genEmployee();
@@ -87,18 +81,10 @@ function moreMembers() {
     //             case 'no':
     //                 generateHTML();
     //                 break;
-
     //         }
-
-
-
-    // }
-
-}
 // (choice) => {
-
-
-
+// }
+}
 
 function genEmployee() {
     //this is either an engineer or an intern
@@ -132,7 +118,6 @@ function genEmployee() {
 
 function genEngineer() {
     return inquirer.prompt([
-
         {
             type: 'input',
             message: 'Please enter the name of your engineer: ',
@@ -162,7 +147,6 @@ function genEngineer() {
     });
 }
 
-
 function genIntern() {
     return inquirer.prompt([
 
@@ -187,14 +171,12 @@ function genIntern() {
             name: 'school'
         }
     ]).then((response) => {
-        var intern1 = new intern(response.name, response.id, response.email, response.github);
+        var intern1 = new intern(response.name, response.id, response.email, response.school);
         Team.push(intern1);
-
-
+        genEmployee();
         // let internText = ``;
     });
 }
-
 
 function generateHTML() {
     this.basehtml = `
@@ -218,7 +200,6 @@ function generateHTML() {
         </div>
     </body>
     </html>`;
-
     // ${manager.card}
     // ${moreMembers}
     // const moreMembers = function() {
@@ -231,8 +212,6 @@ function generateHTML() {
         basehtml += Team.card();
     });
     this.basehtml += this.endinghtml;
-
-
     //put the cards you make from each into template literals
     showPage();
 }
@@ -244,7 +223,6 @@ function showPage() {
             console.log("error");
         }
     });
-
 }
 
 genManager();
