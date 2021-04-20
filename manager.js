@@ -1,9 +1,10 @@
 const Employee = require('./employee');
 
 class Manager extends Employee {
-    constructor(name, id, email, officeNumber) {
+    constructor(name, id, email, officeNumber, role) {
         super(name, id, email);
         this.officeNumber = officeNumber;
+        this.role = role;
     }
     getName() {
         return this.name;
@@ -31,19 +32,16 @@ class Manager extends Employee {
 
         <div class="card-content">
             <h2>
-                ${this.getName}
+                Name:${this.name}
             </h2>
             <h2>
-                ${this.getID}
+                ID:${this.id}
             </h2>
             <h2>
-                ${this.getEmail}
+                Email:${this.email}
             </h2>
             <h2>
-                ${this.getOfficeNumber}
-            </h2>
-            <h2>
-                ${this.getRole}
+                Office Number:${this.officeNumber}
             </h2>
                 </div>
             </div>

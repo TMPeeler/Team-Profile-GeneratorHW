@@ -27,21 +27,21 @@ class Engineer extends Employee {
             <div class="column is-9 has-text-centered">
                 <div class="column is-one-third card">
                     <div class="card-header has-text-centered is-justify-content-center">
-                <h1>${this.getRole}</h1>
+                <h1>Engineer</h1>
             </div>
     
             <div class="card-content">
                 <h2>
-                    ${this.getName}
+                    ${this.name}
                 </h2>
                 <h2>
-                    ${this.getID}
+                    ${this.id}
                 </h2>
                 <h2>
-                    ${this.getEmail}
+                    ${this.email}
                 </h2>
                 <h2>
-                    ${this.getGithub}
+                    ${this.github}
                 </h2>
                
                     </div>

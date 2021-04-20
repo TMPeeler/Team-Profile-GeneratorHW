@@ -14,6 +14,7 @@ const intern = require('./intern');
 
 
 
+
 const Team = [];
 
 function genManager() {
@@ -39,11 +40,12 @@ function genManager() {
         {
             type: 'input',
             message: "Please enter your manager's office number: ",
-            name: 'office'
+            name: 'officeNumber'
         }
+
     ]).then((response) => {
 
-        var manager1 = new manager(response.name, response.id, response.email, response.officeNumber)
+        var manager1 = new manager(response.name, response.id, response.email, response.officeNumber);
         Team.push(manager1);
         moreMembers();
 
@@ -57,33 +59,57 @@ function genManager() {
 }
 
 function moreMembers() {
-    return inquirer.prompt(
-    {
-        type: 'list',
-        message: "Would you like to add more team members?",
-        name: "choice",
-        choices: ['yes', 'no']
-    }
-
-    ).then(({choice}) => {
-
-        if (choice === 'yes') {
-        genEmployee();
-    } else {
-        generateHTML();
-    }
+    return inquirer
+        .prompt(
+            {
+                type: 'list',
+                message: 'Would you like to add more team members?',
+                name: 'choice',
+                choices: ['yes', 'no']
+            }
+        ).then((response) => {
+            console.log(response);
+            if (response.choice === 'yes') {
+                genEmployee();
+            } else {
+                generateHTML();
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
         
-    });
+    //     console.log(data.choice);
+
+    //         switch (data.choice) {
+    //             case 'yes':
+    //                 genEmployee();
+    //                 break;
+    //             case 'no':
+    //                 generateHTML();
+    //                 break;
+
+    //         }
+
+
+
+    // }
+
 }
+// (choice) => {
+
+
+
 
 function genEmployee() {
     //this is either an engineer or an intern
     // use inquirer prompt to choose either occupation and then depending on the one chosen, execute generator function for that one
-    return inquirer.prompt([
+    // return 
+    inquirer.prompt([
 
         {
             type: 'list',
             message: 'Please choose to add one of the following to your team: ',
+            name: 'choice',
             choices: [
                 'Engineer',
                 'Intern',
@@ -92,13 +118,13 @@ function genEmployee() {
         },
 
     ]).then((response) => {
-        if (response === 'Engineer') {
+        if (response.choice === 'Engineer') {
             genEngineer();
 
-        } else if (response === 'Intern') {
+        } else if (response.choice === 'Intern') {
             genIntern();
         } else {
-            //generateHTML();
+            generateHTML();
             //quit or writepage function
         }
     })
@@ -131,7 +157,7 @@ function genEngineer() {
 
         var engineer1 = new engineer(response.name, response.id, response.email, response.github);
         Team.push(engineer1);
-
+        genEmployee();
         // let engineerText = ``;
     });
 }
@@ -171,7 +197,7 @@ function genIntern() {
 
 
 function generateHTML() {
-    let basehtml = `
+    this.basehtml = `
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,8 +211,8 @@ function generateHTML() {
     <div class="hero is-fullheight">
         <div class="columns">
             <div class="column is-12 ">`
-            
-    let endinghtml = ` 
+
+    this.endinghtml = ` 
                 </div>
             </div>
         </div>
@@ -194,7 +220,7 @@ function generateHTML() {
     </html>`;
 
     // ${manager.card}
-            // ${moreMembers}
+    // ${moreMembers}
     // const moreMembers = function() {
     //     if (Team.length > 3) {
     //         return ``;
@@ -204,18 +230,19 @@ function generateHTML() {
     Team.forEach(Team => {
         basehtml += Team.card();
     });
-    basehtml += endinghtml;
+    this.basehtml += this.endinghtml;
 
 
-     //put the cards you make from each into template literals
+    //put the cards you make from each into template literals
     showPage();
 }
+
 function showPage() {
-//write file
-    fs.writeFile('teamProfile.html', html, err => {
-        if(err) {
+    //write file
+    fs.writeFile('teamProfile.html', this.basehtml, err => {
+        if (err) {
             console.log("error");
-        } 
+        }
     });
 
 }
