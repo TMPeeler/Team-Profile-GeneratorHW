@@ -22,27 +22,32 @@ class Engineer extends Employee {
         return 'Engineer';
     }
     card() {
-        return `<div class="column is-one-third card">
-        <div class="card-header has-text-centered is-justify-content-center">
-            <h1>${this.getRole}</h1>
-        </div>
-
-        <div class="card-content">
-            <h2>
-                ${this.name}
-            </h2>
-            <h2>
-                ${this.id}
-            </h2>
-            <h2>
-                ${this.email}
-            </h2>
-            <h2>
-                ${this.github}
-            </h2>
-            
-        </div>
-    </div>`
+        return `
+        <div class="columns is-centered">
+            <div class="column is-9 has-text-centered">
+                <div class="column is-one-third card">
+                    <div class="card-header has-text-centered is-justify-content-center">
+                <h1>${this.getRole}</h1>
+            </div>
+    
+            <div class="card-content">
+                <h2>
+                    ${this.getName}
+                </h2>
+                <h2>
+                    ${this.getID}
+                </h2>
+                <h2>
+                    ${this.getEmail}
+                </h2>
+                <h2>
+                    ${this.getGithub}
+                </h2>
+               
+                    </div>
+                </div>
+            </div>
+        </div>`
     }
 }
 

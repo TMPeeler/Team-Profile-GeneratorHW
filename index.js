@@ -10,6 +10,8 @@ const employee = require('./employee');
 const manager = require('./manager');
 const engineer = require('./engineer');
 const intern = require('./intern');
+const { type } = require('node:os');
+const { generate } = require('rxjs');
 
 
 
@@ -44,16 +46,36 @@ function genManager() {
 
         var manager1 = new manager(response.name, response.id, response.email, response.officeNumber)
         Team.push(manager1);
+        moreMembers();
 
         // let managerText = `
         // <h1> ${manager1.getname} 
         // `;
-
-        genEmployee();
+        //need a function where I either gen employee or generate html
+        // genEmployee();
     }
     );
 }
 
+function moreMembers() {
+    return inquirer.prompt(
+    {
+        type: 'list',
+        message: "Would you like to add more team members?",
+        name: "choice",
+        choices: ['yes', 'no']
+    }
+
+    ).then(({choice}) => {
+
+        if (choice === 'yes') {
+        genEmployee();
+    } else {
+        generateHTML();
+    }
+        );
+    }
+}
 
 function genEmployee() {
     //this is either an engineer or an intern
@@ -61,7 +83,7 @@ function genEmployee() {
     return inquirer.prompt([
 
         {
-            type: 'input',
+            type: 'list',
             message: 'Please choose to add one of the following to your team: ',
             choices: [
                 'Engineer',
@@ -77,7 +99,7 @@ function genEmployee() {
         } else if (response === 'Intern') {
             genIntern();
         } else {
-
+            //generateHTML();
             //quit or writepage function
         }
     })
@@ -149,11 +171,10 @@ function genIntern() {
 }
 
 
-generateHTML() {
+function generateHTML() {
     let basehtml = `
     <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -161,42 +182,45 @@ generateHTML() {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <title>Team Profile Generator</title>
 </head>
-
 <body>
     <div class="hero is-fullheight">
         <div class="columns">
             <div class="column is-12 ">`
-            // ${manager.card}
-
-            // ${moreMembers}
-
-
-
-    let endinghtml =
-           ` </div>
+            
+    let endinghtml = ` 
+                </div>
             </div>
         </div>
     </body>
-    
     </html>`;
 
-    const moreMembers = function() {
-        if (Team.length > 3) {
-            return ``;
-        }
-        return;
-    }
-
+    // ${manager.card}
+            // ${moreMembers}
+    // const moreMembers = function() {
+    //     if (Team.length > 3) {
+    //         return ``;
+    //     }
+    //     return;
+    // }
+    Team.forEach(Team => {
+        basehtml += Team.card();
+    });
+    basehtml += endinghtml;
 
 
      //put the cards you make from each into template literals
-    
+    showPage();
 }
-showPage() {
-
+function showPage() {
 //write file
-    // fs.writeFile('teamProfile.html', html)
+    fs.writeFile('teamProfile.html', html, err => {
+        if(err) {
+            console.log("error");
+        } 
+    });
 
 }
+
+genManager();
 // I need objects to be created via inquire prompts
 // then I need 
