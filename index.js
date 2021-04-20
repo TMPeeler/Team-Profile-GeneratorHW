@@ -73,8 +73,8 @@ function moreMembers() {
     } else {
         generateHTML();
     }
-        );
-    }
+        
+    });
 }
 
 function genEmployee() {

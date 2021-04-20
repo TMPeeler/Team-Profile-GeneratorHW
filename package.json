@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generatorhw",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "index.js",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "n/a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TMPeeler/Team-Profile-GeneratorHW.git"
+  },
+  "author": "Thomas Peeler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TMPeeler/Team-Profile-GeneratorHW/issues"
+  },
+  "homepage": "https://github.com/TMPeeler/Team-Profile-GeneratorHW#readme"
+}
