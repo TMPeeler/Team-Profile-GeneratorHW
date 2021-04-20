@@ -10,8 +10,7 @@ const employee = require('./employee');
 const manager = require('./manager');
 const engineer = require('./engineer');
 const intern = require('./intern');
-const { type } = require('node:os');
-const { generate } = require('rxjs');
+
 
 
 
